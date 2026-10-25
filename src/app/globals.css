@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: #fdfbf7;
+    --foreground: #1c1917;
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-feature-settings: "rlig" 1, "calt" 1;
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+/* Custom scrollbars for a polished studio feel */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f5f0e6;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d6bc92;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #b88e1a;
+}
+
+/* Calligraphy canvas styles */
+.canvas-container {
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Parchment subtle texture */
+.bg-parchment-pattern {
+  background-color: #fdfbf7;
+  background-image: radial-gradient(#e5d5b7 0.75px, transparent 0.75px);
+  background-size: 24px 24px;
+}
+
+/* Obsidian studio texture */
+.bg-obsidian-pattern {
+  background-color: #0f1115;
+  background-image: radial-gradient(#262a33 1px, transparent 1px);
+  background-size: 28px 28px;
+}
