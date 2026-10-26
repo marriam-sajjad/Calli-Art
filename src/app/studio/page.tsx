@@ -406,12 +406,14 @@ export default function StudioPage() {
             if (g) setSelectedTashkeelId(null);
           }}
           onUpdateGlyph={handleUpdateGlyph}
+          onDeleteGlyph={handleDeleteGlyph}
           selectedTashkeel={selectedTashkeel}
           onSelectTashkeel={(t) => {
             setSelectedTashkeelId(t?.id || null);
             if (t) setSelectedGlyphId(null);
           }}
           onUpdateTashkeel={handleUpdateTashkeel}
+          onDeleteTashkeel={handleDeleteTashkeel}
           onUpdateComposition={(updated) => updateComposition(() => updated)}
         />
 

@@ -22,9 +22,11 @@ interface StudioCanvasProps {
   selectedGlyph: CalligraphyGlyph | null;
   onSelectGlyph: (glyph: CalligraphyGlyph | null) => void;
   onUpdateGlyph: (glyph: CalligraphyGlyph) => void;
+  onDeleteGlyph?: (id: string) => void;
   selectedTashkeel: TashkeelItem | null;
   onSelectTashkeel: (item: TashkeelItem | null) => void;
   onUpdateTashkeel: (item: TashkeelItem) => void;
+  onDeleteTashkeel?: (id: string) => void;
   onUpdateComposition: (comp: CompositionState) => void;
 }
 
@@ -38,9 +40,11 @@ export default function StudioCanvas({
   selectedGlyph,
   onSelectGlyph,
   onUpdateGlyph,
+  onDeleteGlyph,
   selectedTashkeel,
   onSelectTashkeel,
   onUpdateTashkeel,
+  onDeleteTashkeel,
   onUpdateComposition
 }: StudioCanvasProps) {
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -505,7 +509,89 @@ export default function StudioCanvas({
             })}
           </g>
 
+          {/* ================= 8. VECTOR BOUNDING BOX & HANDLES FOR SELECTED GLYPH ================= */}
+          {selectedGlyph && (
+            <g className="pointer-events-none">
+              <rect
+                x={selectedGlyph.x - 45 * selectedGlyph.scaleX}
+                y={selectedGlyph.y - 75 * selectedGlyph.scaleY}
+                width={90 * selectedGlyph.scaleX}
+                height={115 * selectedGlyph.scaleY}
+                fill="none"
+                stroke="#38bdf8"
+                strokeWidth="1.5"
+                strokeDasharray="4 4"
+                opacity="0.85"
+              />
+              <rect x={selectedGlyph.x - 45 * selectedGlyph.scaleX - 3} y={selectedGlyph.y - 75 * selectedGlyph.scaleY - 3} width="6" height="6" fill="#ffffff" stroke="#38bdf8" strokeWidth="1.5" />
+              <rect x={selectedGlyph.x + 45 * selectedGlyph.scaleX - 3} y={selectedGlyph.y - 75 * selectedGlyph.scaleY - 3} width="6" height="6" fill="#ffffff" stroke="#38bdf8" strokeWidth="1.5" />
+              <rect x={selectedGlyph.x - 45 * selectedGlyph.scaleX - 3} y={selectedGlyph.y + 40 * selectedGlyph.scaleY - 3} width="6" height="6" fill="#ffffff" stroke="#38bdf8" strokeWidth="1.5" />
+              <rect x={selectedGlyph.x + 45 * selectedGlyph.scaleX - 3} y={selectedGlyph.y + 40 * selectedGlyph.scaleY - 3} width="6" height="6" fill="#ffffff" stroke="#38bdf8" strokeWidth="1.5" />
+              <line x1={selectedGlyph.x} y1={selectedGlyph.y - 75 * selectedGlyph.scaleY} x2={selectedGlyph.x} y2={selectedGlyph.y - 75 * selectedGlyph.scaleY - 18} stroke="#38bdf8" strokeWidth="1.5" />
+              <circle cx={selectedGlyph.x} cy={selectedGlyph.y - 75 * selectedGlyph.scaleY - 18} r="4.5" fill="#38bdf8" />
+            </g>
+          )}
+
         </svg>
+
+        {/* ================= 9. INTERACTIVE FLOATING QUICK SCULPT TOOLBAR ================= */}
+        {selectedGlyph && (
+          <div
+            style={{
+              position: 'absolute',
+              left: `${selectedGlyph.x}px`,
+              top: `${Math.max(10, selectedGlyph.y - 75 * selectedGlyph.scaleY - 42)}px`,
+              transform: 'translateX(-50%)',
+            }}
+            className="bg-[#121520]/95 backdrop-blur-md border border-amber-500/40 rounded-xl px-2 py-1 shadow-2xl flex items-center gap-1.5 z-40 text-stone-200 text-xs"
+          >
+            <span className="font-bold text-amber-300 font-serif px-1">{selectedGlyph.char}</span>
+            {selectedGlyph.availableAlternates.length > 1 && (
+              <button
+                onClick={() => {
+                  const nextAlt = (selectedGlyph.alternateIndex + 1) % selectedGlyph.availableAlternates.length;
+                  onUpdateGlyph({ ...selectedGlyph, alternateIndex: nextAlt });
+                }}
+                className="px-2 py-0.5 rounded bg-[#1e2334] hover:bg-amber-600 hover:text-stone-950 text-[10px] font-semibold transition-colors"
+                title="Cycle Alternate Form"
+              >
+                Alt {selectedGlyph.alternateIndex + 1}/{selectedGlyph.availableAlternates.length}
+              </button>
+            )}
+            <button
+              onClick={() => onUpdateGlyph({ ...selectedGlyph, elevation: selectedGlyph.elevation + 6 })}
+              className="px-1.5 py-0.5 rounded hover:bg-[#202538] text-[10px]"
+              title="Lift Baseline (+6px)"
+            >
+              ▲ Lift
+            </button>
+            <button
+              onClick={() => onUpdateGlyph({ ...selectedGlyph, elevation: selectedGlyph.elevation - 6 })}
+              className="px-1.5 py-0.5 rounded hover:bg-[#202538] text-[10px]"
+              title="Drop Baseline (-6px)"
+            >
+              ▼ Drop
+            </button>
+            <button
+              onClick={() => onUpdateGlyph({ ...selectedGlyph, reverseTail: !selectedGlyph.reverseTail })}
+              className={`px-1.5 py-0.5 rounded text-[10px] font-semibold transition-colors ${
+                selectedGlyph.reverseTail ? 'bg-amber-600 text-stone-950 font-bold' : 'hover:bg-[#202538]'
+              }`}
+              title="Reverse Tail (Ya Marduda)"
+            >
+              ⇄ Marduda
+            </button>
+            {onDeleteGlyph && (
+              <button
+                onClick={() => onDeleteGlyph(selectedGlyph.id)}
+                className="p-1 rounded text-red-400 hover:bg-red-950/40 text-xs ml-0.5"
+                title="Delete Letter"
+              >
+                ✕
+              </button>
+            )}
+          </div>
+        )}
       </div>
 
       {/* Floating Canvas HUD Overlay */}
