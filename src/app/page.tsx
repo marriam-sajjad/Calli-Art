@@ -135,25 +135,25 @@ export default function HomePage() {
             <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-100/80 border border-amber-300 text-amber-900 text-xs font-semibold tracking-wide uppercase">
                 <Sparkles className="w-3.5 h-3.5 text-amber-600" />
-                <span>Next-Gen Calligraphy Platform</span>
+                <span>MyQalam Studio • 100% Free &amp; Unlocked</span>
               </div>
 
               <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-extrabold text-stone-900 tracking-tight leading-[1.15]">
-                Where Sacred Strokes Meet <span className="text-amber-800 underline decoration-amber-400 decoration-wavy decoration-2">Digital Mastery</span>
+                Arabic Calligraphy <span className="text-amber-800 underline decoration-amber-400 decoration-wavy decoration-2">Design Studio</span>
               </h1>
 
               <p className="text-stone-600 text-base sm:text-lg max-w-2xl leading-relaxed mx-auto lg:mx-0">
-                A unified ecosystem for calligraphy artists: draw with responsive broad & pointed nibs on the <strong>Web Studio</strong>, showcase masterpieces on the <strong>Community Feed</strong>, download practice sheets, and manage your <strong>Link-in-Bio</strong> portal.
+                A browser-based studio inspired by <strong>MyQalam Studio</strong>: procedural vector engines for <strong>Thuluth</strong>, <strong>Jali Diwani</strong>, and <strong>Square Kufic</strong>, automatic shape fitting (Circles, Teardrops, Mihrabs), full Quran &amp; Dhikr library, laser-ready welded SVG &amp; DXF CNC export, and stroke-by-stroke animated video generation.
               </p>
 
               {/* Action Buttons */}
               <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-2">
                 <Link
                   href="/studio"
-                  className="flex items-center gap-2 px-6 py-3.5 rounded-xl bg-stone-900 text-white font-medium text-base shadow-lg shadow-stone-900/15 hover:bg-stone-800 hover:shadow-xl transition-all"
+                  className="flex items-center gap-2 px-6 py-3.5 rounded-xl bg-gradient-to-r from-stone-950 via-stone-900 to-stone-950 text-amber-200 font-semibold text-base shadow-lg shadow-amber-950/20 hover:brightness-110 hover:shadow-xl transition-all border border-amber-500/30"
                 >
-                  <PenTool className="w-5 h-5 text-amber-300" />
-                  <span>Launch Web Studio</span>
+                  <PenTool className="w-5 h-5 text-amber-400" />
+                  <span>Launch MyQalam Studio</span>
                   <ArrowRight className="w-4 h-4 ml-1" />
                 </Link>
 
@@ -169,15 +169,15 @@ export default function HomePage() {
               <div className="pt-4 flex flex-wrap items-center justify-center lg:justify-start gap-6 text-xs text-stone-500 font-medium">
                 <div className="flex items-center gap-1.5">
                   <CheckCircle className="w-4 h-4 text-emerald-600" />
-                  <span>Responsive on Mobile & Desktop</span>
+                  <span>100% Unlocked • No Paywalls</span>
                 </div>
                 <div className="flex items-center gap-1.5">
                   <CheckCircle className="w-4 h-4 text-emerald-600" />
-                  <span>Supabase Backend with RLS</span>
+                  <span>Laser SVG &amp; CNC DXF Ready</span>
                 </div>
                 <div className="flex items-center gap-1.5">
                   <CheckCircle className="w-4 h-4 text-emerald-600" />
-                  <span>Free Digital Practice Downloads</span>
+                  <span>Stroke-by-Stroke Video Generator</span>
                 </div>
               </div>
             </div>
@@ -299,15 +299,15 @@ export default function HomePage() {
                 <PenTool className="w-6 h-6" />
               </div>
               <h3 className="font-serif text-lg font-bold text-stone-900 group-hover:text-amber-800 transition-colors">
-                Interactive Canvas Studio
+                MyQalam Arabic Studio
               </h3>
               <p className="text-xs text-stone-500 font-mono mt-0.5">/studio</p>
               <p className="text-sm text-stone-600 mt-3 leading-relaxed">
-                Full calligraphy studio with broad chisel nibs, pointed flex pen, Arabic Nuqta grids, Copperplate 55° slants, and PNG export.
+                Full-featured Arabic Calligraphy Design Studio: Thuluth, Jali Diwani, Square Kufic, automatic shape fitting, Quran library, laser SVG/DXF, and video generator.
               </p>
             </div>
             <div className="mt-6 flex items-center gap-1 text-xs font-semibold text-stone-900 group-hover:translate-x-1 transition-transform">
-              <span>Open Studio</span>
+              <span>Launch Studio</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </div>
           </Link>

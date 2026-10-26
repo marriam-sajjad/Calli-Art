@@ -22,6 +22,10 @@ export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const connected = isSupabaseConfigured();
 
+  if (pathname === '/studio') {
+    return null;
+  }
+
   const navLinks = [
     { href: '/links', label: 'Link-in-Bio', icon: Share2, badge: 'Portal' },
     { href: '/feed', label: 'Community Feed', icon: ImageIcon, badge: null },
